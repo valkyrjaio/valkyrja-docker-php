@@ -1,0 +1,36 @@
+#
+# This file is part of the Valkyrja Docker package.
+#
+# Copyright (c) 2016-present Melech Mizrachi
+#
+# Released under the MIT License. See LICENSE.md for details.
+#
+
+# The package this repository is. COPYRIGHT_HEADER.md in the .github repository
+# maps every repository to its own identifier.
+IDENTIFIER='Valkyrja Docker'
+
+# The files that carry no copyright header. Every other tracked file must carry
+# it, so a new file fails the check until a person adds the header or adds the
+# file here.
+EXCLUDED=(
+    # A document holds no program code. LICENSE.md and README.md are documents.
+    '*.md'
+
+    # A workflow and the Compose file hold configuration. No YAML file in the
+    # organization carries the header.
+    '*.yml'
+
+    # A list of paths that a tool reads. The file format takes no comment on
+    # every line, and the file holds no program code.
+    '*.dockerignore'
+    '*.gitignore'
+
+    # The package sources that the image installs from. The file is data that
+    # apt reads.
+    'docker/apt/sources.list'
+
+    # The nginx site configuration that the image copies. The file holds
+    # configuration, not program code.
+    'docker/conf/site.conf'
+)

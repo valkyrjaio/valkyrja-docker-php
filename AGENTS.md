@@ -51,7 +51,8 @@ it. Ignore the framework-specific sections of the canonical guide:
 - **The helper scripts in the root** — `build.sh`, `up.sh`, `start.sh`,
   `stop.sh`, `remove.sh`, `logs.sh`, `bash.sh`, and `bash-win.sh`. Each one wraps
   one Docker command. `bash-win.sh` is the Windows form of `bash.sh`.
-- **`.github/ci/copyright-header/check.sh`** — the copyright header check.
+- **`.github/ci/copyright-header/config`** — the identifier and the exclusion
+  list that the shared copyright header check reads.
 
 `bash.sh` and `bash-win.sh` do the same job on two platforms. A change to one
 usually needs the same change to the other.
@@ -96,16 +97,29 @@ A file that holds no program code carries no header. A document, a workflow, and
 a configuration file are such files. `docker-compose.yml`,
 `docker/conf/site.conf`, and `docker/apt/sources.list` carry none.
 
-`.github/ci/copyright-header/check.sh` enforces the rule, and `ci.yml` runs it.
+The shared `_copyright-header-check.yml` workflow in the `.github` repo enforces
+the rule, and `ci.yml` calls it. The organization keeps one check for every repo,
+so a correction reaches every repo at once. This repo supplies only its own
+settings, in `.github/ci/copyright-header/config`. That file sets `IDENTIFIER`,
+and it sets the `EXCLUDED` list. The shared script sources the file as shell, so
+the file is a program file and it carries the header itself.
+
 The check reads every tracked file, and it requires the header in each file that
-the `EXCLUDED` list in the script does not match. Warning: a new file fails the
-check until a person acts. Add the header to the file, or add the file to
-`EXCLUDED` when the file holds no program code. Run the check before you open the
-pull request:
+`EXCLUDED` does not match. Warning: a new file fails the check until a person
+acts. Add the header to the file, or add the file to `EXCLUDED` when the file
+holds no program code.
+
+Warning: the check reads `git ls-files`, so it does not see an untracked file. A
+new file that you have not staged passes in silence. Stage the file, then run the
+check before you open the pull request:
 
 ```bash
-./.github/ci/copyright-header/check.sh
+REF="$(grep -o '_copyright-header-check.yml@[0-9a-f]*' .github/workflows/ci.yml | cut -d '@' -f 2)"
+curl -fsSL "https://raw.githubusercontent.com/valkyrjaio/.github/$REF/.github/ci/scripts/copyright-header-check.sh" | bash
 ```
+
+The first command reads the commit that `ci.yml` pins, so the script you run
+locally is the script that CI runs.
 
 ## CI
 
