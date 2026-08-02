@@ -22,6 +22,8 @@ It governs the parts that **do** apply here:
   on `master`.
 - Simplified Technical English in every document.
 - Trailing newlines, and American English.
+- The copyright header, on every program file. See the [Copyright
+  header](#copyright-header) section below.
 
 ## What does NOT apply
 
@@ -32,7 +34,6 @@ it. Ignore the framework-specific sections of the canonical guide:
   `Abstract\`, `Enum\`, and `Contract\` segments.
 - The provider conventions and the binding-key conventions.
 - The 100% line-and-branch coverage rule. This repo runs no test suite.
-- The license header for a source file.
 - The PHP CI gate — PHPStan, Psalm, PHPUnit, PHP CS Fixer, PHPArkitect, and
   Rector. This repo runs none of them.
 
@@ -50,6 +51,7 @@ it. Ignore the framework-specific sections of the canonical guide:
 - **The helper scripts in the root** — `build.sh`, `up.sh`, `start.sh`,
   `stop.sh`, `remove.sh`, `logs.sh`, `bash.sh`, and `bash-win.sh`. Each one wraps
   one Docker command. `bash-win.sh` is the Windows form of `bash.sh`.
+- **`.github/ci/copyright-header/check.sh`** — the copyright header check.
 
 `bash.sh` and `bash-win.sh` do the same job on two platforms. A change to one
 usually needs the same change to the other.
@@ -69,10 +71,47 @@ State the reason for a package change in the pull request description. Never
 write the reason as a comment in the `Dockerfile` — the canonical guide forbids
 a comment that states a current condition, because a later edit strands it.
 
+## Copyright header
+
+Every program file in this repo carries the copyright header. The package
+identifier is `Valkyrja Docker`. `COPYRIGHT_HEADER.md` in the `.github` repo
+holds the identifier for every repo, and it is the source of truth for the
+header text.
+
+A program file writes the header as a line comment, because this repo holds no
+PHP. The header follows the shebang when the file has one:
+
+```bash
+#!/bin/bash
+#
+# This file is part of the Valkyrja Docker package.
+#
+# Copyright (c) 2016-present Melech Mizrachi
+#
+# Released under the MIT License. See LICENSE.md for details.
+#
+```
+
+A file that holds no program code carries no header. A document, a workflow, and
+a configuration file are such files. `docker-compose.yml`,
+`docker/conf/site.conf`, and `docker/apt/sources.list` carry none.
+
+`.github/ci/copyright-header/check.sh` enforces the rule, and `ci.yml` runs it.
+The check reads every tracked file, and it requires the header in each file that
+the `EXCLUDED` list in the script does not match. Warning: a new file fails the
+check until a person acts. Add the header to the file, or add the file to
+`EXCLUDED` when the file holds no program code. Run the check before you open the
+pull request:
+
+```bash
+./.github/ci/copyright-header/check.sh
+```
+
 ## CI
 
-The gate here checks files, not code. `ci.yml` runs the trailing newline check.
-`pr.yml` runs the commit message check. There is no Markdown check in this repo.
+The gate here checks files, not code. `ci.yml` runs the trailing newline check
+and the copyright header check. `pr.yml` runs the commit message check. There is
+no Markdown check in this repo.
 
 ## Roots
 
