@@ -1,2 +1,5 @@
 /.idea
+/.worktrees
 /valkyrja
+.DS_Store
+Thumbs.db
