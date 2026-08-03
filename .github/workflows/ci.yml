@@ -31,6 +31,17 @@ jobs:
       VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
       VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
 
+  markdown-check:
+    name: Markdown Check
+    if: github.event_name == 'pull_request'
+    uses: valkyrjaio/.github/.github/workflows/_markdown-check.yml@c56ebc8606ffb9031fd45aec671f7ad5324e86db
+    permissions:
+      pull-requests: write
+      contents: read
+    secrets:
+      VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
+      VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
+
   # This repo holds no PHP, so no language formatter reads any file here and none of them carries
   # the header by way of a tool. The shared check is closed by default instead: it requires the
   # header in every tracked file that `EXCLUDED` does not match, so a file of a type no tool reads
