@@ -1,6 +1,12 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.1...26.x)
+## [Unreleased](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.2...26.x)
+
+## [v26.0.2](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.1...v26.0.2) - 2026-10-09
+
+* [Workflow] ci: Update .github workflow refs to v26.26.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-docker-php/pull/59
+* [Workflow] ci: Update .github workflow refs to v26.26.1 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-docker-php/pull/60
+* [Workflow] ci: Update .github workflow refs to v26.26.2 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-docker-php/pull/61
 
 ## [v26.0.1](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.0...v26.0.1) - 2026-10-08
 
