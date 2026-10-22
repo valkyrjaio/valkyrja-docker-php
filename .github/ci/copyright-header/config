@@ -26,10 +26,6 @@ EXCLUDED=(
     '*.dockerignore'
     '*.gitignore'
 
-    # The package sources that the image installs from. The file is data that
-    # apt reads.
-    'docker/apt/sources.list'
-
     # The nginx site configuration that the image copies. The file holds
     # configuration, not program code.
     'docker/conf/site.conf'
