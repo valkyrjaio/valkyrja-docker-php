@@ -44,7 +44,6 @@ it. Ignore the framework-specific sections of the canonical guide:
   and its bash completion.
 - **`docker-compose.yml`** — the service definition and the mounts.
 - **`docker/conf/site.conf`** — the Nginx site configuration.
-- **`docker/apt/sources.list`** — the package sources.
 - **`docker/sync.sh` and `docker/sync-site.sh`** — the file sync inside the
   container.
 - **`docker/bash_completion/valkyrja`** — the bash completion for the CLI.
@@ -59,8 +58,8 @@ usually needs the same change to the other.
 
 ## Warning — a package change breaks the build for every user
 
-The `Dockerfile` pins the base image, the package repository, and each installed
-package. A change to any one of them changes the image that every user builds.
+The `Dockerfile` pins the base image to one PHP patch release, and it pins the
+Xdebug version. A change to either one changes the image that every user builds.
 Build the image and start the container before you open the pull request. CI
 does not build the image.
 
@@ -94,8 +93,8 @@ PHP. The header follows the shebang when the file has one:
 ```
 
 A file that holds no program code carries no header. A document, a workflow, and
-a configuration file are such files. `docker-compose.yml`,
-`docker/conf/site.conf`, and `docker/apt/sources.list` carry none.
+a configuration file are such files. `docker-compose.yml` and
+`docker/conf/site.conf` carry none.
 
 The shared `_copyright-header-check.yml` workflow in the `.github` repo enforces
 the rule, and `ci.yml` calls it. The organization keeps one check for every repo,

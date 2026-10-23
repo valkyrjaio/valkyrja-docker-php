@@ -10,7 +10,7 @@
 replaceSyncWith=site
 syncDir="/var/www/sync/"
 
-inotifywait -m -r -e modify,create,move "${syncDir}app" "${syncDir}bootstrap" "${syncDir}config" "${syncDir}framework" "${syncDir}public" "${syncDir}resources" "${syncDir}routes" "${syncDir}storage" |
+inotifywait -m -r -e modify,create,move "${syncDir}app" |
 while read -r directory events filename; do
     if [[ $filename != *"tmp"* ]]
     then

@@ -8,7 +8,7 @@
 
 _valkyrja()
 {
-COMPREPLY=(`valkyrja console:commandsForBash $COMP_LINE`)
+COMPREPLY=(`valkyrja list:bash $COMP_LINE`)
 return 0
 }
 complete -F _valkyrja valkyrja
