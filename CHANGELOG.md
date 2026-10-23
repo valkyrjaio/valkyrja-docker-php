@@ -1,6 +1,11 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.2...26.x)
+## [Unreleased](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.3...26.x)
+
+## [v26.0.3](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.2...v26.0.3) - 2026-10-23
+
+* [Dockerfile] fix: Build the image on PHP 8.4.27 and the current app layout by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-docker-php/pull/62
+* [Workflow] ci: Update .github workflow refs to v26.26.3 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-docker-php/pull/63
 
 ## [v26.0.2](https://github.com/valkyrjaio/valkyrja-docker-php/compare/v26.0.1...v26.0.2) - 2026-10-09
 
