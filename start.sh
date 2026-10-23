@@ -8,6 +8,3 @@
 #
 
 docker start valkyrja_docker
-
-#docker exec valkyrja_docker ./var/www/sync-site.sh
-#docker exec valkyrja_docker ./var/www/sync.sh
